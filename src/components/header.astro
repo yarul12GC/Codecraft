@@ -1,0 +1,80 @@
+---
+interface Props {
+  title?: string;
+  logo: string;
+}
+
+const { title, logo } = Astro.props;
+
+const list = [
+  { name: "About me", link: "#" },
+  { name: "Portfolio", link: "#" },
+  { name: "Contact me", link: "#" },
+];
+---
+
+<nav
+  class="bg-transparent flex justify-between items-center text-white text-xl p-6 relative"
+>
+  <a
+    href="/"
+    class="hover:text-blue-700 hover:delay-150 hover:duration-100 cursor-pointer"
+  >
+    <div>{logo}</div>
+  </a>
+
+  {/* Botón hamburguesa para pantallas pequeñas */}
+  <div class="md:hidden">
+    <button id="menu-btn" class="block focus:outline-none">
+      <i class="fas fa-bars text-2xl"></i>
+    </button>
+  </div>
+
+  {/* Menú que se oculta en pantallas pequeñas y se despliega en medianas */}
+  <div
+    id="menu"
+    class="hidden md:flex md:items-center md:space-x-11 absolute md:static top-16 left-0 right-0 bg-black md:bg-transparent z-50 md:z-auto flex-col md:flex-row space-y-6 md:space-y-0 p-6 md:p-0 transition-all duration-300 ease-in-out"
+  >
+    {
+      list.map((item) => (
+        <a
+          href={item.link}
+          class="hover:text-blue-700 hover:delay-150 hover:duration-100 cursor-pointer"
+        >
+          {item.name}
+        </a>
+      ))
+    }
+  </div>
+
+  {/* Íconos de redes sociales, visibles en pantallas medianas y grandes */}
+  <div class="hidden md:flex md:space-x-5">
+    <a href="">
+      <i
+        class="fab fa-github hover:text-blue-700 hover:delay-150 hover:duration-100"
+      ></i>
+    </a>
+    <a href="">
+      <i
+        class="fab fa-linkedin hover:text-blue-700 hover:delay-150 hover:duration-100"
+      ></i>
+    </a>
+    <a href="">
+      <i
+        class="fab fa-whatsapp hover:text-blue-700 hover:delay-150 hover:duration-100"
+      ></i>
+    </a>
+  </div>
+</nav>
+
+<script>
+  const menuBtn = document.getElementById("menu-btn");
+  const menu = document.getElementById("menu");
+
+  menuBtn?.addEventListener("click", () => {
+    if (menu) {
+      menu.classList.toggle("hidden");
+      menu.classList.toggle("flex");
+    }
+  });
+</script>

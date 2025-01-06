@@ -1,22 +1,77 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import Card from "../components/Card.astro";
 import Header from "../components/header.astro";
 import Info from "../components/info.astro";
+import Services from "../components/Servicios.astro";
 import Contact from "../components/contact.astro";
+import Tecnologys from "../components/tecnologys.astro";
+import SpeedInsights from "@vercel/speed-insights/astro";
+import Portfolio from "../components/portafoliogrid.astro";
+import Footer from "../components/Footer.astro";
+const tarjetas = [
+  {
+    name: "React",
+    src: "react.png",
+  },
+  {
+    name: "Angular",
+    src: "angular.png",
+  },
+  {
+    name: "Astro",
+    src: "favicon.svg",
+  },
+  {
+    name: "Tailwind.png",
+    src: "Tailwind.png",
+  },
+  {
+    name: "JavaScript",
+    src: "JS.png",
+  },
+  {
+    name: "PHP",
+    src: "php.svg",
+  },
+  {
+    name: "SQL",
+    src: "servidor-sql.png",
+  },
+  {
+    name: "CSS",
+    src: "css.png",
+  },
 
-const contactFields = [
-  { label: "Nombre de la empresa o cliente", name: "nombre" },
-  { label: "Correo electrónico", name: "email" },
-  { label: "Teléfono", name: "telefono" },
-  { label: "Tipo de servicio", name: "servicio" },
-  { label: "Descripción breve del proyecto", name: "descripcion" },
-  { label: "URL del sitio web (si aplica)", name: "url" },
-  { label: "Plazo de entrega estimado", name: "plazo" },
+  {
+    name: "HTML",
+    src: "html.png",
+  },
+  {
+    name: "BOOTSTRAP",
+    src: "bootstrap-logo.svg",
+  },
 ];
 ---
 
-<Layout title="Welcome to Astro." />
+<SpeedInsights />
+<Layout title="Inicio" />
 <Header logo="CODECRAFT" title="Codecraft" />
-<Info title="Hola," />
-<Contact listfor={contactFields} />
+<Info title="Hola, " />
+<Services title="Servicios" />
+
+<Portfolio title="Portafolio de proyectos" />
+<div class="flex flex-col items-center mt-10 pt-10">
+  <h1 class="text-6xl font-bold text-center mb-4 z-40">Tecnologies</h1>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-5 gap-10 p-6">
+  {
+    tarjetas.map((card) => (
+      <div class="transition-transform transform hover:scale-105">
+        <Tecnologys tecnologia={card.name} imagen={card.src} />
+      </div>
+    ))
+  }
+</div>
+<Contact title="Describe tu situacion" />
+
+<Footer />
